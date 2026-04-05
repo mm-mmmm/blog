@@ -8,75 +8,45 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #fafaf8;
-    --surface: #ffffff;
-    --border: #e8e6e0;
-    --border-strong: #d0cec8;
-    --text: #1a1917;
-    --text-2: #5a5854;
-    --text-3: #9a9894;
-    --accent: #1a1917;
-    --tag-bg: #f0ede8;
-    --radius: 10px;
-    --radius-sm: 6px;
+    --bg: #fafaf8; --surface: #ffffff; --border: #e8e6e0; --border-strong: #d0cec8;
+    --text: #1a1917; --text-2: #5a5854; --text-3: #9a9894;
+    --tag-bg: #f0ede8; --radius: 10px; --radius-sm: 6px;
   }
   body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.6; }
 
-  /* ── Lock Screen ── */
-  #lock-screen {
-    position: fixed; inset: 0; background: var(--bg);
-    display: flex; align-items: center; justify-content: center; z-index: 999;
-  }
+  #lock-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 999; }
   .lock-box { width: 320px; text-align: center; }
   .lock-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--text); margin-bottom: 6px; }
   .lock-sub { font-size: 12px; color: var(--text-3); margin-bottom: 32px; letter-spacing: 0.04em; }
   .lock-input { width: 100%; padding: 12px 16px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 14px; background: var(--surface); color: var(--text); letter-spacing: 0.1em; text-align: center; outline: none; }
-  .lock-input:focus { border-color: var(--accent); }
-  .lock-btn { margin-top: 12px; width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; }
+  .lock-input:focus { border-color: var(--text); }
+  .lock-btn { margin-top: 12px; width: 100%; padding: 12px; background: var(--text); color: #fff; border: none; border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; }
   .lock-error { font-size: 12px; color: #c0392b; margin-top: 8px; height: 16px; }
 
-  /* ── App Layout ── */
   #app { display: none; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
   .app-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 2.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
   .app-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--text); }
   .app-sub { font-size: 12px; color: var(--text-3); letter-spacing: 0.03em; }
 
-  /* ── Steps ── */
-  .steps { display: flex; align-items: center; gap: 0; margin-bottom: 2rem; }
+  .steps { display: flex; align-items: center; margin-bottom: 2rem; }
   .step { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-3); }
   .step.active { color: var(--text); font-weight: 500; }
-  .step.done { color: var(--text-3); }
   .step-dot { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; }
-  .step.active .step-dot { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .step.active .step-dot { background: var(--text); color: #fff; border-color: var(--text); }
   .step.done .step-dot { background: var(--tag-bg); color: var(--text-3); }
-  .step-done-mark { font-size: 10px; }
   .step-line { flex: 1; height: 1px; background: var(--border); margin: 0 12px; }
 
-  /* ── Cards ── */
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
   .card-label { font-size: 11px; font-weight: 500; color: var(--text-3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem; }
 
-  /* ── Form ── */
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
   .form-group { display: flex; flex-direction: column; gap: 5px; }
   .form-group.span2 { grid-column: 1 / -1; }
   label { font-size: 12px; color: var(--text-2); }
-  input[type=text], input[type=date], select, textarea {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 13px; color: var(--text);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 9px 12px;
-    outline: none;
-    transition: border-color 0.15s;
-    width: 100%;
-  }
+  input[type=text], input[type=date], select, textarea { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; outline: none; transition: border-color 0.15s; width: 100%; }
   input:focus, select:focus, textarea:focus { border-color: var(--border-strong); background: var(--surface); }
   textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
-  select { cursor: pointer; }
 
-  /* ── Upload ── */
   .upload-zone { border: 1.5px dashed var(--border-strong); border-radius: var(--radius); padding: 2rem 1rem; text-align: center; cursor: pointer; transition: background 0.15s; }
   .upload-zone:hover { background: var(--tag-bg); }
   .upload-icon { font-size: 24px; margin-bottom: 8px; opacity: 0.5; }
@@ -86,28 +56,25 @@
   .photo-count { font-size: 12px; color: var(--text-3); margin: 8px 0 4px; }
   .drag-hint { font-size: 11px; color: var(--text-3); margin-bottom: 10px; }
   .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; }
-  .photo-item { position: relative; aspect-ratio: 1; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); cursor: grab; transition: opacity 0.15s; }
+  .photo-item { position: relative; aspect-ratio: 1; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); cursor: grab; }
   .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .photo-num { position: absolute; top: 5px; left: 5px; background: rgba(0,0,0,0.55); color: #fff; font-size: 10px; font-weight: 500; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-  .photo-del { position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.55); color: #fff; font-size: 13px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; line-height: 1; }
+  .photo-del { position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.55); color: #fff; font-size: 13px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   .photo-item.dragging { opacity: 0.35; }
-  .photo-item.drag-over { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .photo-item.drag-over { outline: 2px solid var(--text); outline-offset: 2px; }
 
-  /* ── Buttons ── */
   .btn-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 1.5rem; }
-  .btn-primary { background: var(--accent); color: #fff; border: none; padding: 10px 24px; border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; }
+  .btn-primary { background: var(--text); color: #fff; border: none; padding: 10px 24px; border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; }
   .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
   .btn-ghost { background: transparent; color: var(--text-2); border: 1px solid var(--border-strong); padding: 10px 20px; border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 13px; cursor: pointer; }
   .btn-ghost:hover { background: var(--tag-bg); }
 
-  /* ── Generating ── */
   .generating { text-align: center; padding: 4rem 1rem; }
-  .spinner { width: 28px; height: 28px; border: 1.5px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.75s linear infinite; margin: 0 auto 1.25rem; }
+  .spinner { width: 28px; height: 28px; border: 1.5px solid var(--border); border-top-color: var(--text); border-radius: 50%; animation: spin 0.75s linear infinite; margin: 0 auto 1.25rem; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .gen-main { font-size: 14px; color: var(--text); margin-bottom: 6px; }
   .gen-sub { font-size: 12px; color: var(--text-3); }
 
-  /* ── Editor ── */
   .editor-wrap { display: grid; grid-template-columns: 1fr 260px; gap: 16px; }
   .editor-main { display: flex; flex-direction: column; gap: 12px; }
   .editor-side { display: flex; flex-direction: column; gap: 12px; }
@@ -115,13 +82,11 @@
   .body-field { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; line-height: 1.9; color: var(--text); border: none; outline: none; background: transparent; width: 100%; min-height: 520px; resize: none; }
   .intro-field { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; line-height: 1.7; color: var(--text); border: none; outline: none; background: transparent; width: 100%; min-height: 70px; resize: none; }
 
-  /* ── Tags ── */
   .tag-wrap { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 8px; border: 1px solid var(--border); border-radius: var(--radius-sm); min-height: 38px; cursor: text; }
   .tag { background: var(--tag-bg); color: var(--text-2); font-size: 12px; padding: 3px 10px; border-radius: 999px; display: flex; align-items: center; gap: 4px; }
   .tag-x { cursor: pointer; color: var(--text-3); font-size: 13px; line-height: 1; }
   .tag-input { border: none; outline: none; background: transparent; font-size: 12px; color: var(--text); font-family: 'Noto Sans KR', sans-serif; min-width: 70px; flex: 1; }
 
-  /* ── Photo Sidebar ── */
   .photo-side-list { display: flex; flex-direction: column; gap: 5px; }
   .photo-side-item { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: grab; transition: background 0.1s; font-size: 12px; }
   .photo-side-item:hover { background: var(--tag-bg); }
@@ -129,38 +94,22 @@
   .photo-side-label { color: var(--text-2); }
   .photo-side-num { margin-left: auto; color: var(--text-3); font-size: 11px; }
 
-  /* ── Export ── */
   .export-btns { display: flex; flex-direction: column; gap: 6px; }
   .btn-export { background: transparent; color: var(--text); border: 1px solid var(--border-strong); padding: 9px 14px; border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 13px; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px; }
   .btn-export:hover { background: var(--tag-bg); }
-  .btn-export-icon { font-size: 14px; }
 
-  /* ── Toast ── */
-  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; padding: 10px 20px; border-radius: var(--radius-sm); font-size: 13px; opacity: 0; transition: opacity 0.2s; pointer-events: none; white-space: nowrap; }
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: var(--text); color: #fff; padding: 10px 20px; border-radius: var(--radius-sm); font-size: 13px; opacity: 0; transition: opacity 0.2s; pointer-events: none; white-space: nowrap; }
   .toast.show { opacity: 1; }
 
-  /* ── Panel visibility ── */
   .panel { display: none; }
   .panel.active { display: block; }
 
-  /* ── API Key notice ── */
-  .api-notice { background: #fffbf0; border: 1px solid #f0e0a0; border-radius: var(--radius-sm); padding: 10px 14px; font-size: 12px; color: #7a6020; margin-bottom: 1rem; display: flex; gap: 8px; align-items: flex-start; }
-
-  @media (max-width: 640px) {
-    .form-grid { grid-template-columns: 1fr; }
-    .editor-wrap { grid-template-columns: 1fr; }
-  }
-  @media print {
-    #lock-screen { display: none !important; }
-    .app-header, .steps, .btn-row, .editor-side { display: none !important; }
-    .editor-wrap { grid-template-columns: 1fr !important; }
-    body { background: #fff; }
-  }
+  @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } .editor-wrap { grid-template-columns: 1fr; } }
+  @media print { #lock-screen { display: none !important; } .app-header, .steps, .btn-row, .editor-side { display: none !important; } .editor-wrap { grid-template-columns: 1fr !important; } body { background: #fff; } }
 </style>
 </head>
 <body>
 
-<!-- Lock Screen -->
 <div id="lock-screen">
   <div class="lock-box">
     <div class="lock-logo">Blog Writer</div>
@@ -171,7 +120,6 @@
   </div>
 </div>
 
-<!-- App -->
 <div id="app">
   <div class="app-header">
     <span class="app-logo">Blog Writer</span>
@@ -186,19 +134,7 @@
     <div class="step" id="s3"><div class="step-dot">3</div><span>편집 · 내보내기</span></div>
   </div>
 
-  <!-- Panel 1: Input -->
   <div class="panel active" id="panel1">
-    <div class="api-notice">
-      💡 Claude API 키가 필요해요. 아래 설정에서 입력하면 바로 사용할 수 있어요.
-    </div>
-    <div class="card">
-      <div class="card-label">API 설정</div>
-      <div class="form-group">
-        <label>Anthropic API 키</label>
-        <input type="password" id="api-key" placeholder="sk-ant-..." />
-      </div>
-    </div>
-
     <div class="card">
       <div class="card-label">행사 정보</div>
       <div class="form-grid">
@@ -248,7 +184,6 @@
     </div>
   </div>
 
-  <!-- Panel 2: Generating -->
   <div class="panel" id="panel2">
     <div class="card generating">
       <div class="spinner"></div>
@@ -257,7 +192,6 @@
     </div>
   </div>
 
-  <!-- Panel 3: Editor -->
   <div class="panel" id="panel3">
     <div class="editor-wrap">
       <div class="editor-main">
@@ -267,7 +201,7 @@
         </div>
         <div class="card">
           <div class="card-label">본문</div>
-          <textarea class="body-field" id="post-body" placeholder="본문"></textarea>
+          <textarea class="body-field" id="post-body"></textarea>
         </div>
       </div>
       <div class="editor-side">
@@ -289,9 +223,9 @@
         <div class="card">
           <div class="card-label">내보내기</div>
           <div class="export-btns">
-            <button class="btn-export" onclick="copyAll()"><span class="btn-export-icon">📋</span> 전체 복사</button>
-            <button class="btn-export" onclick="window.print()"><span class="btn-export-icon">📄</span> PDF 저장</button>
-            <button class="btn-export" onclick="goBack()"><span class="btn-export-icon">←</span> 처음으로</button>
+            <button class="btn-export" onclick="copyAll()">📋 전체 복사</button>
+            <button class="btn-export" onclick="window.print()">📄 PDF 저장</button>
+            <button class="btn-export" onclick="goBack()">← 처음으로</button>
           </div>
         </div>
       </div>
@@ -302,7 +236,6 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ── 비밀번호 설정 (여기를 바꾸세요) ──
 const PASSWORD = 'qlalfqjsgh!!';
 
 function checkPw() {
@@ -318,7 +251,6 @@ function checkPw() {
   }
 }
 
-// ── Upload ──
 let photos = [];
 let dragSrcIdx = null;
 
@@ -349,10 +281,10 @@ function renderPhotos() {
   hint.style.display = 'block';
   photos.forEach((p, i) => {
     const d = document.createElement('div');
-    d.className = 'photo-item'; d.draggable = true; d.dataset.i = i;
+    d.className = 'photo-item'; d.draggable = true;
     d.innerHTML = `<img src="${p.src}"/><div class="photo-num">${i+1}</div><div class="photo-del" onclick="delPhoto(${i})">×</div>`;
     d.addEventListener('dragstart', () => { dragSrcIdx = i; d.classList.add('dragging'); });
-    d.addEventListener('dragend', () => { d.classList.remove('dragging'); grid.querySelectorAll('.photo-item').forEach(el => el.classList.remove('drag-over')); });
+    d.addEventListener('dragend', () => { d.classList.remove('dragging'); document.querySelectorAll('.photo-item').forEach(el => el.classList.remove('drag-over')); });
     d.addEventListener('dragover', e => { e.preventDefault(); d.classList.add('drag-over'); });
     d.addEventListener('dragleave', () => d.classList.remove('drag-over'));
     d.addEventListener('drop', e => { e.preventDefault(); if (dragSrcIdx !== null && dragSrcIdx !== i) { const m = photos.splice(dragSrcIdx,1)[0]; photos.splice(i,0,m); renderPhotos(); } });
@@ -362,13 +294,8 @@ function renderPhotos() {
 }
 
 function delPhoto(i) { photos.splice(i,1); renderPhotos(); }
+function checkReady() { document.getElementById('gen-btn').disabled = !(document.getElementById('event-name').value.trim() && photos.length > 0); }
 
-function checkReady() {
-  const ok = document.getElementById('event-name').value.trim() && photos.length > 0;
-  document.getElementById('gen-btn').disabled = !ok;
-}
-
-// ── Steps ──
 function showStep(n) {
   [1,2,3].forEach(i => {
     document.getElementById(`panel${i}`).classList.toggle('active', i === n);
@@ -380,9 +307,7 @@ function showStep(n) {
   });
 }
 
-// ── Generate ──
 const genMessages = ['행사 정보 분석 중', '관련 정보 리서치 중', '사진 순서 최적화 중', '제목·소개글 작성 중', '본문 구성 중', '태그 정리 중'];
-let genTimer;
 
 async function startGenerate() {
   const name = document.getElementById('event-name').value.trim();
@@ -390,11 +315,10 @@ async function startGenerate() {
   const venue = document.getElementById('event-venue').value.trim();
   const memo = document.getElementById('event-memo').value.trim();
   const tone = document.getElementById('blog-tone').value;
-  const apiKey = document.getElementById('api-key').value.trim();
   if (!name || !photos.length) return;
   showStep(2);
   let gi = 0;
-  genTimer = setInterval(() => { gi = (gi+1) % genMessages.length; document.getElementById('gen-sub').textContent = genMessages[gi]; }, 1800);
+  const genTimer = setInterval(() => { gi = (gi+1) % genMessages.length; document.getElementById('gen-sub').textContent = genMessages[gi]; }, 1800);
 
   const photoList = photos.map((p,i) => `사진${i+1}: ${p.name}`).join('\n');
   const prompt = `당신은 네이버 블로그 전문 작가입니다.
@@ -413,24 +337,17 @@ ${photoList}
 2. 수다스럽지 않게 — 필요한 정보만 간결하게
 3. 사진 위치는 [사진1], [사진2] 형식으로 자연스럽게 본문에 삽입
 4. 단락 구분은 빈 줄 하나
-5. 행사에 대한 실제 정보(개최 배경, 주요 전시, 볼거리 등)를 바탕으로 구체적으로 작성
+5. 행사에 대한 실제 정보를 바탕으로 구체적으로 작성
 6. 제목은 정보형으로 — 과도한 이모지나 느낌표 없이
 
 JSON만 출력 (백틱이나 다른 텍스트 없이):
 {"title":"제목","intro":"소개글 2문장","tags":["태그1","태그2","태그3","태그4","태그5"],"body":"본문 전체"}`;
 
   try {
-    const headers = { 'Content-Type': 'application/json', 'x-api-key': API_KEY };
-    if (apiKey) headers['x-api-key'] = apiKey;
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/api/generate', {
       method: 'POST',
-      headers,
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-        messages: [{ role: 'user', content: prompt }]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: [{ role: 'user', content: prompt }] })
     });
     const data = await res.json();
     clearInterval(genTimer);
@@ -446,7 +363,6 @@ JSON만 출력 (백틱이나 다른 텍스트 없이):
   }
 }
 
-// ── Editor ──
 function fillEditor(d) {
   document.getElementById('post-title').value = d.title || '';
   document.getElementById('post-intro').value = d.intro || '';
@@ -472,7 +388,6 @@ function addTagEl(text) {
   wrap.insertBefore(el, inp);
 }
 
-// ── Photo Sidebar ──
 let sideDragSrc = null;
 function renderSidebar() {
   const list = document.getElementById('photo-side-list');
@@ -486,16 +401,12 @@ function renderSidebar() {
     item.addEventListener('dragleave', () => item.style.background = '');
     item.addEventListener('drop', e => {
       e.preventDefault(); item.style.background = '';
-      if (sideDragSrc !== null && sideDragSrc !== i) {
-        const m = photos.splice(sideDragSrc,1)[0]; photos.splice(i,0,m);
-        renderSidebar();
-      }
+      if (sideDragSrc !== null && sideDragSrc !== i) { const m = photos.splice(sideDragSrc,1)[0]; photos.splice(i,0,m); renderSidebar(); }
     });
     list.appendChild(item);
   });
 }
 
-// ── Export ──
 function copyAll() {
   const title = document.getElementById('post-title').value;
   const intro = document.getElementById('post-intro').value;
@@ -505,12 +416,7 @@ function copyAll() {
 }
 
 function goBack() { showStep(1); }
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
+function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
 </script>
 </body>
 </html>
