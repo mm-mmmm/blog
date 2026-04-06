@@ -23,6 +23,7 @@ export default async function handler(req) {
         'Content-Type': 'application/json',
         'x-api-key': process.env.ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01',
+        'anthropic-beta': 'web-search-2025-03-05',
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
@@ -32,8 +33,9 @@ export default async function handler(req) {
       }),
     });
 
-    const data = await response.json();
-    return new Response(JSON.stringify(data), {
+    const text = await response.text();
+    return new Response(text, {
+      status: response.status,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
