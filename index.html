@@ -7,27 +7,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #fafaf8; --surface: #ffffff; --border: #e8e6e0; --border-strong: #d0cec8;
-    --text: #1a1917; --text-2: #5a5854; --text-3: #9a9894;
-    --tag-bg: #f0ede8; --radius: 10px; --radius-sm: 6px;
-  }
+  :root { --bg: #fafaf8; --surface: #ffffff; --border: #e8e6e0; --border-strong: #d0cec8; --text: #1a1917; --text-2: #5a5854; --text-3: #9a9894; --tag-bg: #f0ede8; --radius: 10px; --radius-sm: 6px; }
   body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.6; }
-
   #lock-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 999; }
   .lock-box { width: 320px; text-align: center; }
   .lock-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--text); margin-bottom: 6px; }
-  .lock-sub { font-size: 12px; color: var(--text-3); margin-bottom: 32px; letter-spacing: 0.04em; }
+  .lock-sub { font-size: 12px; color: var(--text-3); margin-bottom: 32px; }
   .lock-input { width: 100%; padding: 12px 16px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 14px; background: var(--surface); color: var(--text); letter-spacing: 0.1em; text-align: center; outline: none; }
   .lock-input:focus { border-color: var(--text); }
   .lock-btn { margin-top: 12px; width: 100%; padding: 12px; background: var(--text); color: #fff; border: none; border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; }
   .lock-error { font-size: 12px; color: #c0392b; margin-top: 8px; height: 16px; }
-
   #app { display: none; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
   .app-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 2.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
-  .app-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--text); }
-  .app-sub { font-size: 12px; color: var(--text-3); letter-spacing: 0.03em; }
-
+  .app-logo { font-family: 'DM Serif Display', serif; font-size: 20px; }
+  .app-sub { font-size: 12px; color: var(--text-3); }
   .steps { display: flex; align-items: center; margin-bottom: 2rem; }
   .step { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-3); }
   .step.active { color: var(--text); font-weight: 500; }
@@ -35,19 +28,16 @@
   .step.active .step-dot { background: var(--text); color: #fff; border-color: var(--text); }
   .step.done .step-dot { background: var(--tag-bg); color: var(--text-3); }
   .step-line { flex: 1; height: 1px; background: var(--border); margin: 0 12px; }
-
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
   .card-label { font-size: 11px; font-weight: 500; color: var(--text-3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem; }
-
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
   .form-group { display: flex; flex-direction: column; gap: 5px; }
   .form-group.span2 { grid-column: 1 / -1; }
   label { font-size: 12px; color: var(--text-2); }
-  input[type=text], input[type=date], select, textarea { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; outline: none; transition: border-color 0.15s; width: 100%; }
+  input[type=text], input[type=date], select, textarea { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; outline: none; width: 100%; }
   input:focus, select:focus, textarea:focus { border-color: var(--border-strong); background: var(--surface); }
   textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
-
-  .upload-zone { border: 1.5px dashed var(--border-strong); border-radius: var(--radius); padding: 2rem 1rem; text-align: center; cursor: pointer; transition: background 0.15s; }
+  .upload-zone { border: 1.5px dashed var(--border-strong); border-radius: var(--radius); padding: 2rem 1rem; text-align: center; cursor: pointer; }
   .upload-zone:hover { background: var(--tag-bg); }
   .upload-icon { font-size: 24px; margin-bottom: 8px; opacity: 0.5; }
   .upload-label { font-size: 13px; color: var(--text-2); }
@@ -62,50 +52,39 @@
   .photo-del { position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.55); color: #fff; font-size: 13px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   .photo-item.dragging { opacity: 0.35; }
   .photo-item.drag-over { outline: 2px solid var(--text); outline-offset: 2px; }
-
   .btn-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 1.5rem; }
   .btn-primary { background: var(--text); color: #fff; border: none; padding: 10px 24px; border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; }
   .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
-  .btn-ghost { background: transparent; color: var(--text-2); border: 1px solid var(--border-strong); padding: 10px 20px; border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 13px; cursor: pointer; }
-  .btn-ghost:hover { background: var(--tag-bg); }
-
   .generating { text-align: center; padding: 4rem 1rem; }
   .spinner { width: 28px; height: 28px; border: 1.5px solid var(--border); border-top-color: var(--text); border-radius: 50%; animation: spin 0.75s linear infinite; margin: 0 auto 1.25rem; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .gen-main { font-size: 14px; color: var(--text); margin-bottom: 6px; }
   .gen-sub { font-size: 12px; color: var(--text-3); }
-
   .editor-wrap { display: grid; grid-template-columns: 1fr 260px; gap: 16px; }
   .editor-main { display: flex; flex-direction: column; gap: 12px; }
   .editor-side { display: flex; flex-direction: column; gap: 12px; }
   .title-field { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--text); border: none; outline: none; background: transparent; width: 100%; padding: 4px 0; border-bottom: 1px solid var(--border); }
   .body-field { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; line-height: 1.9; color: var(--text); border: none; outline: none; background: transparent; width: 100%; min-height: 520px; resize: none; }
   .intro-field { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; line-height: 1.7; color: var(--text); border: none; outline: none; background: transparent; width: 100%; min-height: 70px; resize: none; }
-
   .tag-wrap { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 8px; border: 1px solid var(--border); border-radius: var(--radius-sm); min-height: 38px; cursor: text; }
   .tag { background: var(--tag-bg); color: var(--text-2); font-size: 12px; padding: 3px 10px; border-radius: 999px; display: flex; align-items: center; gap: 4px; }
   .tag-x { cursor: pointer; color: var(--text-3); font-size: 13px; line-height: 1; }
   .tag-input { border: none; outline: none; background: transparent; font-size: 12px; color: var(--text); font-family: 'Noto Sans KR', sans-serif; min-width: 70px; flex: 1; }
-
   .photo-side-list { display: flex; flex-direction: column; gap: 5px; }
-  .photo-side-item { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: grab; transition: background 0.1s; font-size: 12px; }
+  .photo-side-item { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: grab; font-size: 12px; }
   .photo-side-item:hover { background: var(--tag-bg); }
   .photo-side-thumb { width: 32px; height: 32px; border-radius: 4px; object-fit: cover; flex-shrink: 0; }
   .photo-side-label { color: var(--text-2); }
   .photo-side-num { margin-left: auto; color: var(--text-3); font-size: 11px; }
-
   .export-btns { display: flex; flex-direction: column; gap: 6px; }
   .btn-export { background: transparent; color: var(--text); border: 1px solid var(--border-strong); padding: 9px 14px; border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif; font-size: 13px; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px; }
   .btn-export:hover { background: var(--tag-bg); }
-
   .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: var(--text); color: #fff; padding: 10px 20px; border-radius: var(--radius-sm); font-size: 13px; opacity: 0; transition: opacity 0.2s; pointer-events: none; white-space: nowrap; }
   .toast.show { opacity: 1; }
-
   .panel { display: none; }
   .panel.active { display: block; }
-
   @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } .editor-wrap { grid-template-columns: 1fr; } }
-  @media print { #lock-screen { display: none !important; } .app-header, .steps, .btn-row, .editor-side { display: none !important; } .editor-wrap { grid-template-columns: 1fr !important; } body { background: #fff; } }
+  @media print { #lock-screen { display: none !important; } .app-header, .steps, .btn-row, .editor-side { display: none !important; } .editor-wrap { grid-template-columns: 1fr !important; } }
 </style>
 </head>
 <body>
@@ -125,7 +104,6 @@
     <span class="app-logo">Blog Writer</span>
     <span class="app-sub">네이버 블로그 글 생성기</span>
   </div>
-
   <div class="steps">
     <div class="step active" id="s1"><div class="step-dot">1</div><span>정보 입력</span></div>
     <div class="step-line"></div>
@@ -140,7 +118,7 @@
       <div class="form-grid">
         <div class="form-group">
           <label>행사명 *</label>
-          <input type="text" id="event-name" placeholder="예: 2024 서울모터쇼" oninput="checkReady()" />
+          <input type="text" id="event-name" placeholder="예: 2026 서울국제불교박람회" oninput="checkReady()" />
         </div>
         <div class="form-group">
           <label>관람일</label>
@@ -148,24 +126,23 @@
         </div>
         <div class="form-group">
           <label>장소</label>
-          <input type="text" id="event-venue" placeholder="예: 코엑스 전시장" />
+          <input type="text" id="event-venue" placeholder="예: 코엑스 B홀" />
         </div>
         <div class="form-group">
           <label>블로그 톤</label>
           <select id="blog-tone">
-            <option value="정보 중심의 리뷰 — 깔끔하고 단정하게, 수다스럽지 않게">정보 중심 · 깔끔하고 단정하게</option>
+            <option value="정보 중심 · 깔끔하고 단정하게">정보 중심 · 깔끔하고 단정하게</option>
             <option value="친근하고 일상적인">친근하고 일상적인</option>
             <option value="감성적이고 서정적인">감성적이고 서정적인</option>
             <option value="전문적이고 분석적인">전문적이고 분석적인</option>
           </select>
         </div>
         <div class="form-group span2">
-          <label>추가 메모 (선택)</label>
-          <textarea id="event-memo" placeholder="특별히 기억에 남는 것, 포함하고 싶은 내용 등"></textarea>
+          <label>추가 메모 (선택) — 기억에 남는 것, 느낀 점 등</label>
+          <textarea id="event-memo" placeholder="예: 굿즈 줄이 엄청 길었음, 담마토크가 인상적이었음"></textarea>
         </div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-label">사진 업로드</div>
       <div class="upload-zone" onclick="document.getElementById('file-input').click()">
@@ -178,7 +155,6 @@
       <div class="drag-hint" id="drag-hint" style="display:none;">드래그로 순서를 바꿀 수 있어요</div>
       <div class="photo-grid" id="photo-grid"></div>
     </div>
-
     <div class="btn-row">
       <button class="btn-primary" id="gen-btn" onclick="startGenerate()" disabled>글 생성하기 →</button>
     </div>
@@ -188,7 +164,7 @@
     <div class="card generating">
       <div class="spinner"></div>
       <div class="gen-main">블로그 글을 만들고 있어요</div>
-      <div class="gen-sub" id="gen-sub">행사 정보 분석 중</div>
+      <div class="gen-sub" id="gen-sub">행사 정보 리서치 중</div>
     </div>
   </div>
 
@@ -236,10 +212,10 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const PASSWORD = 'qlalfqjsgh!!';
+var PASSWORD = 'qlalfqjsgh!!';
 
 function checkPw() {
-  const val = document.getElementById('pw-input').value;
+  var val = document.getElementById('pw-input').value;
   if (val === PASSWORD) {
     document.getElementById('lock-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
@@ -247,24 +223,24 @@ function checkPw() {
     document.getElementById('pw-error').textContent = '비밀번호가 틀렸어요.';
     document.getElementById('pw-input').value = '';
     document.getElementById('pw-input').focus();
-    setTimeout(() => document.getElementById('pw-error').textContent = '', 2000);
+    setTimeout(function() { document.getElementById('pw-error').textContent = ''; }, 2000);
   }
 }
 
-let photos = [];
-let dragSrcIdx = null;
+var photos = [];
+var dragSrcIdx = null;
 
-const uploadZone = document.querySelector('.upload-zone');
-uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.style.background = '#f0ede8'; });
-uploadZone.addEventListener('dragleave', () => { uploadZone.style.background = ''; });
-uploadZone.addEventListener('drop', e => { e.preventDefault(); uploadZone.style.background = ''; handleFiles(e.dataTransfer.files); });
+var uploadZone = document.querySelector('.upload-zone');
+uploadZone.addEventListener('dragover', function(e) { e.preventDefault(); uploadZone.style.background = '#f0ede8'; });
+uploadZone.addEventListener('dragleave', function() { uploadZone.style.background = ''; });
+uploadZone.addEventListener('drop', function(e) { e.preventDefault(); uploadZone.style.background = ''; handleFiles(e.dataTransfer.files); });
 
 function handleFiles(files) {
-  Array.from(files).filter(f => f.type.startsWith('image/')).forEach(f => {
-    const reader = new FileReader();
-    reader.onload = e => {
+  Array.from(files).filter(function(f) { return f.type.startsWith('image/'); }).forEach(function(f) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
       photos.push({ src: e.target.result, name: f.name, time: f.lastModified });
-      photos.sort((a, b) => a.time - b.time);
+      photos.sort(function(a, b) { return a.time - b.time; });
       renderPhotos();
     };
     reader.readAsDataURL(f);
@@ -272,22 +248,22 @@ function handleFiles(files) {
 }
 
 function renderPhotos() {
-  const grid = document.getElementById('photo-grid');
-  const cnt = document.getElementById('photo-count');
-  const hint = document.getElementById('drag-hint');
+  var grid = document.getElementById('photo-grid');
+  var cnt = document.getElementById('photo-count');
+  var hint = document.getElementById('drag-hint');
   grid.innerHTML = '';
   if (!photos.length) { cnt.style.display = 'none'; hint.style.display = 'none'; return; }
-  cnt.style.display = 'block'; cnt.textContent = `${photos.length}장 업로드됨`;
+  cnt.style.display = 'block'; cnt.textContent = photos.length + '장 업로드됨';
   hint.style.display = 'block';
-  photos.forEach((p, i) => {
-    const d = document.createElement('div');
+  photos.forEach(function(p, i) {
+    var d = document.createElement('div');
     d.className = 'photo-item'; d.draggable = true;
-    d.innerHTML = `<img src="${p.src}"/><div class="photo-num">${i+1}</div><div class="photo-del" onclick="delPhoto(${i})">×</div>`;
-    d.addEventListener('dragstart', () => { dragSrcIdx = i; d.classList.add('dragging'); });
-    d.addEventListener('dragend', () => { d.classList.remove('dragging'); document.querySelectorAll('.photo-item').forEach(el => el.classList.remove('drag-over')); });
-    d.addEventListener('dragover', e => { e.preventDefault(); d.classList.add('drag-over'); });
-    d.addEventListener('dragleave', () => d.classList.remove('drag-over'));
-    d.addEventListener('drop', e => { e.preventDefault(); if (dragSrcIdx !== null && dragSrcIdx !== i) { const m = photos.splice(dragSrcIdx,1)[0]; photos.splice(i,0,m); renderPhotos(); } });
+    d.innerHTML = '<img src="' + p.src + '"/><div class="photo-num">' + (i+1) + '</div><div class="photo-del" onclick="delPhoto(' + i + ')">×</div>';
+    d.addEventListener('dragstart', function() { dragSrcIdx = i; d.classList.add('dragging'); });
+    d.addEventListener('dragend', function() { d.classList.remove('dragging'); document.querySelectorAll('.photo-item').forEach(function(el) { el.classList.remove('drag-over'); }); });
+    d.addEventListener('dragover', function(e) { e.preventDefault(); d.classList.add('drag-over'); });
+    d.addEventListener('dragleave', function() { d.classList.remove('drag-over'); });
+    d.addEventListener('drop', function(e) { e.preventDefault(); if (dragSrcIdx !== null && dragSrcIdx !== i) { var m = photos.splice(dragSrcIdx,1)[0]; photos.splice(i,0,m); renderPhotos(); } });
     grid.appendChild(d);
   });
   checkReady();
@@ -297,9 +273,9 @@ function delPhoto(i) { photos.splice(i,1); renderPhotos(); }
 function checkReady() { document.getElementById('gen-btn').disabled = !(document.getElementById('event-name').value.trim() && photos.length > 0); }
 
 function showStep(n) {
-  [1,2,3].forEach(i => {
-    document.getElementById(`panel${i}`).classList.toggle('active', i === n);
-    const s = document.getElementById(`s${i}`);
+  [1,2,3].forEach(function(i) {
+    document.getElementById('panel' + i).classList.toggle('active', i === n);
+    var s = document.getElementById('s' + i);
     s.classList.remove('active','done');
     if (i < n) { s.classList.add('done'); s.querySelector('.step-dot').textContent = '✓'; }
     else if (i === n) { s.classList.add('active'); s.querySelector('.step-dot').textContent = i; }
@@ -307,83 +283,33 @@ function showStep(n) {
   });
 }
 
-const genMessages = ['행사 정보 분석 중', '관련 정보 리서치 중', '사진 순서 최적화 중', '제목·소개글 작성 중', '본문 구성 중', '태그 정리 중'];
+var genMessages = ['행사 정보 리서치 중', '공식 정보 수집 중', '사진 순서 최적화 중', '제목·소개글 작성 중', '본문 구성 중', '태그 정리 중'];
 
 async function startGenerate() {
-  const name = document.getElementById('event-name').value.trim();
-  const date = document.getElementById('event-date').value;
-  const venue = document.getElementById('event-venue').value.trim();
-  const memo = document.getElementById('event-memo').value.trim();
-  const tone = document.getElementById('blog-tone').value;
+  var name = document.getElementById('event-name').value.trim();
+  var date = document.getElementById('event-date').value;
+  var venue = document.getElementById('event-venue').value.trim();
+  var memo = document.getElementById('event-memo').value.trim();
+  var tone = document.getElementById('blog-tone').value;
   if (!name || !photos.length) return;
   showStep(2);
-  let gi = 0;
-  const genTimer = setInterval(() => { gi = (gi+1) % genMessages.length; document.getElementById('gen-sub').textContent = genMessages[gi]; }, 1800);
+  var gi = 0;
+  var genTimer = setInterval(function() { gi = (gi+1) % genMessages.length; document.getElementById('gen-sub').textContent = genMessages[gi]; }, 1800);
 
-  const photoList = photos.map((p,i) => `사진${i+1}: ${p.name}`).join('\n');
-  const prompt = `당신은 네이버 블로그 전문 작가입니다.
-
-행사 정보:
-- 행사명: ${name}
-- 관람일: ${date || '미입력'}
-- 장소: ${venue || '미입력'}
-- 참고 메모 (글에 반영하되, 메모내용만 쓰지 말 것. 본문에 반영은 하되 최우선 순위는 아님): ${memo || '없음'}
-- 톤: ${tone}
-- 사진 수: ${photos.length}장
-${photoList}
-
-규칙:
-1. 반드시 '~합니다/했습니다' 체로 작성 (절대 '~하다' 체 사용 금지)
-2. 톤은 "${tone}" 스타일로 — 정보는 담되 수다스럽지 않게 깔끔하게
-3. 사진 위치는 [사진1], [사진2] 형식으로 자연스럽게 본문에 삽입
-4. 단락 구분은 빈 줄 하나
-5. 행사 실제 정보를 바탕으로 구체적으로 작성
-6. 제목은 정보형으로 — 과도한 이모지나 느낌표 없이
-7. 소제목은 굵게 표시 (예: **전시 구성**, **현장 팁**)
-
-글 구조는 반드시 아래 순서로 작성:
-
-1. 행사 개요 (표 형식으로)
-   - 행사명
-   - 기간
-   - 장소
-   - 홈페이지 / SNS (리서치해서 찾아줄 것)
-
-2. 서두
-   - "~행사를 다녀왔습니다" 한 문장
-   - 짧은 첫인상 감상 1~2문장
-
-3. 현장 내용
-   - 웹서치 정보 + 메모 내용 함께 반영
-   - [사진N] 을 자연스럽게 배치
-   - 소제목은 **굵게** 표시
-   - 내용이 길거나 여러 세션으로 구성된 경우, 세션별로 소제목 나눠 본문 작성할 것 (본문이 너무 길어지지 않게 작성할 것)
-
-4. 마무리
-   - 전체 요약 1~2문장
-   - 다음 방문자를 위한 팁 1~2줄
-
-규칙:
-1. 반드시 '~합니다/했습니다' 체로 작성
-2. 수다스럽지 않게 — 정보는 담되 깔끔하게
-3. 사진 위치는 [사진1], [사진2] 형식으로 자연스럽게 삽입
-4. 단락 구분은 빈 줄 하나
-5. 제목은 정보형으로 — 과도한 이모지나 느낌표 없이
-
-JSON만 출력 (백틱이나 다른 텍스트 없이):
-{"title":"제목","intro":"소개글 2문장","tags":["태그1","태그2","태그3","태그4","태그5"],"body":"본문 전체"}
+  var photoList = photos.map(function(p,i) { return '사진' + (i+1) + ': ' + p.name; }).join('\n');
+  var prompt = '당신은 문화예술 전시, 행사를 리뷰하는 네이버 블로그 전문 작가입니다. 지나친 억측이나 개인적 감상은 최소화하고 행사에 대한 정보, 작가, 내용 위주로 글을 게재합니다. \n\n행사 정보:\n- 행사명: ' + name + '\n- 관람일: ' + (date || '미입력') + '\n- 장소: ' + (venue || '미입력') + '\n- 메모 (리서치 정보와 함께 반드시 반영): ' + (memo || '없음') + '\n- 사진 수: ' + photos.length + '장\n' + photoList + '\n\n글 구조는 반드시 아래 순서로 작성:\n\n1. 행사 개요를 표 형식으로\n   행사명 / 기간 / 장소 / 홈페이지 및 SNS\n\n2. 서두\n   행사를 다녀왔습니다 한 문장 + 첫인상 포함 짧은 요약글 1~2문장\n\n3. 현장 내용\n   리서치 정보와 메모 내용 함께 반영\n   [사진N] 자연스럽게 배치\n   소제목은 **굵게**\n\n4. 마무리\n   전체 요약 1~2문장 + 방문자 팁 1~2줄\n\n규칙:\n- 반드시 합니다/했습니다 체\n- 수다스럽지 않게 깔끔하게\n- 사진은 [사진1] [사진2] 형식\n- 단락 구분 빈 줄\n- 제목은 정보형\n\nJSON만 출력:\n{"title":"제목","intro":"소개글 2문장","tags":["태그1","태그2","태그3","태그4","태그5"],"body":"본문 전체"}';
 
   try {
-    const res = await fetch('/api/generate', {
+    var res = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: [{ role: 'user', content: prompt }], eventName: name })
     });
-    const data = await res.json();
+    var data = await res.json();
     clearInterval(genTimer);
-    const textBlock = data.content && data.content.find(b => b.type === 'text');
-    if (!textBlock) throw new Error(data.error?.message || '응답을 받지 못했어요');
-    const parsed = JSON.parse(textBlock.text.replace(/```json|```/g,'').trim());
+    var textBlock = data.content && data.content.find(function(b) { return b.type === 'text'; });
+    if (!textBlock) throw new Error(data.error ? data.error.message : '응답을 받지 못했어요');
+    var parsed = JSON.parse(textBlock.text.replace(/```json|```/g,'').trim());
     fillEditor(parsed);
     showStep(3);
   } catch(e) {
@@ -397,56 +323,56 @@ function fillEditor(d) {
   document.getElementById('post-title').value = d.title || '';
   document.getElementById('post-intro').value = d.intro || '';
   document.getElementById('post-body').value = d.body || '';
-  document.querySelectorAll('.tag').forEach(t => t.remove());
+  document.querySelectorAll('.tag').forEach(function(t) { t.remove(); });
   (d.tags || []).forEach(addTagEl);
   renderSidebar();
 }
 
 function addTag(e) {
   if (e.key !== 'Enter') return;
-  const inp = document.getElementById('tag-input');
-  const v = inp.value.trim().replace(/^#/,'');
+  var inp = document.getElementById('tag-input');
+  var v = inp.value.trim().replace(/^#/,'');
   if (v) { addTagEl(v); inp.value = ''; }
 }
 
 function addTagEl(text) {
-  const wrap = document.getElementById('tag-wrap');
-  const inp = document.getElementById('tag-input');
-  const el = document.createElement('div');
+  var wrap = document.getElementById('tag-wrap');
+  var inp = document.getElementById('tag-input');
+  var el = document.createElement('div');
   el.className = 'tag';
-  el.innerHTML = `#${text} <span class="tag-x" onclick="this.parentElement.remove()">×</span>`;
+  el.innerHTML = '#' + text + ' <span class="tag-x" onclick="this.parentElement.remove()">×</span>';
   wrap.insertBefore(el, inp);
 }
 
-let sideDragSrc = null;
+var sideDragSrc = null;
 function renderSidebar() {
-  const list = document.getElementById('photo-side-list');
+  var list = document.getElementById('photo-side-list');
   list.innerHTML = '';
-  photos.forEach((p, i) => {
-    const item = document.createElement('div');
+  photos.forEach(function(p, i) {
+    var item = document.createElement('div');
     item.className = 'photo-side-item'; item.draggable = true;
-    item.innerHTML = `<img class="photo-side-thumb" src="${p.src}"/><span class="photo-side-label">[사진${i+1}]</span><span class="photo-side-num">${i+1}/${photos.length}</span>`;
-    item.addEventListener('dragstart', () => sideDragSrc = i);
-    item.addEventListener('dragover', e => { e.preventDefault(); item.style.background = '#f0ede8'; });
-    item.addEventListener('dragleave', () => item.style.background = '');
-    item.addEventListener('drop', e => {
+    item.innerHTML = '<img class="photo-side-thumb" src="' + p.src + '"/><span class="photo-side-label">[사진' + (i+1) + ']</span><span class="photo-side-num">' + (i+1) + '/' + photos.length + '</span>';
+    item.addEventListener('dragstart', function() { sideDragSrc = i; });
+    item.addEventListener('dragover', function(e) { e.preventDefault(); item.style.background = '#f0ede8'; });
+    item.addEventListener('dragleave', function() { item.style.background = ''; });
+    item.addEventListener('drop', function(e) {
       e.preventDefault(); item.style.background = '';
-      if (sideDragSrc !== null && sideDragSrc !== i) { const m = photos.splice(sideDragSrc,1)[0]; photos.splice(i,0,m); renderSidebar(); }
+      if (sideDragSrc !== null && sideDragSrc !== i) { var m = photos.splice(sideDragSrc,1)[0]; photos.splice(i,0,m); renderSidebar(); }
     });
     list.appendChild(item);
   });
 }
 
 function copyAll() {
-  const title = document.getElementById('post-title').value;
-  const intro = document.getElementById('post-intro').value;
-  const body = document.getElementById('post-body').value;
-  const tags = [...document.querySelectorAll('.tag')].map(t => t.textContent.replace('×','').trim()).join(' ');
-  navigator.clipboard.writeText(`${title}\n\n${intro}\n\n${body}\n\n${tags}`).then(() => showToast('복사됐어요!'));
+  var title = document.getElementById('post-title').value;
+  var intro = document.getElementById('post-intro').value;
+  var body = document.getElementById('post-body').value;
+  var tags = Array.from(document.querySelectorAll('.tag')).map(function(t) { return t.textContent.replace('×','').trim(); }).join(' ');
+  navigator.clipboard.writeText(title + '\n\n' + intro + '\n\n' + body + '\n\n' + tags).then(function() { showToast('복사됐어요!'); });
 }
 
 function goBack() { showStep(1); }
-function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
+function showToast(msg) { var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(function() { t.classList.remove('show'); }, 2500); }
 </script>
 </body>
 </html>
