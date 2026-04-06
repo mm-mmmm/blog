@@ -1,4 +1,7 @@
-export const config = { runtime: 'edge' };
+export const config = {
+  runtime: 'edge',
+  maxDuration: 60,
+};
 
 export default async function handler(req) {
   if (req.method === 'OPTIONS') {
@@ -17,7 +20,6 @@ export default async function handler(req) {
 
   try {
     const body = await req.json();
-
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -27,7 +29,7 @@ export default async function handler(req) {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 2000,
+        max_tokens: 1500,
         messages: body.messages,
       }),
     });
