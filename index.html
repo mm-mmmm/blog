@@ -348,7 +348,7 @@ JSON만 출력 (백틱이나 다른 텍스트 없이):
     const res = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: [{ role: 'user', content: prompt }] })
+      body: JSON.stringify({ messages: [{ role: 'user', content: prompt }], eventName: name })
     });
     const data = await res.json();
     clearInterval(genTimer);
